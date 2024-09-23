@@ -9,7 +9,7 @@ const paytoneOne = Paytone_One({ subsets: ["latin"], weight: ["400"] });
 
 export const Header = () => {
   return (
-    <header className="mx-auto flex w-full max-w-5xl items-center justify-between py-6">
+    <header className="mx-auto flex w-full max-w-5xl items-center justify-between py-6 px-4">
       <Link href="/" className={`${paytoneOne.className} text-3xl`}>
         Authjs + Drizzle
       </Link>
