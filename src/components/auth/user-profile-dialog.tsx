@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Icons, iconVariants } from "@/components/icons";
 import {
   ResponsiveDialog,
   ResponsiveDialogBody,
@@ -30,7 +29,7 @@ export const UserProfileDialog = ({
     <ResponsiveDialog open={isOpen} onOpenChange={onOpenChange}>
       <ResponsiveDialogContent>
         <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>Profile</ResponsiveDialogTitle>
+          <ResponsiveDialogTitle>プロフィール</ResponsiveDialogTitle>
         </ResponsiveDialogHeader>
         <ResponsiveDialogBody className="flex flex-col gap-4 items-center">
           <Avatar className="h-28 w-28">
@@ -41,19 +40,16 @@ export const UserProfileDialog = ({
             <div className="text-medium">{user.name}</div>
             <div className="text-muted-foreground text-sm">{user.email}</div>
           </div>
-          <div className="flex flex-col gap-3 p-4 text-sm w-full">
+          <div className="flex flex-col gap-3 py-4 text-sm w-full">
             <Separator />
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
-                <div className="flex justify-between items-center text-muted-foreground gap-2">
-                  <Icons.Calendar className={iconVariants({ size: "sm" })} />
-                  Joined
-                </div>
-                <div>
-                  {new Intl.DateTimeFormat("en-US", {
+                <span>アカウント作成日</span>
+                <span>
+                  {new Intl.DateTimeFormat("ja-JP", {
                     dateStyle: "full",
                   }).format(new Date(user.createdAt))}
-                </div>
+                </span>
               </div>
             </div>
           </div>

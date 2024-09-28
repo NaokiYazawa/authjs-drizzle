@@ -84,9 +84,7 @@ const ResponsiveDialogContent = ({ className, ...props }: BaseProps) => {
 const ResponsiveDialogBody = ({ className, ...props }: BaseProps) => {
   const { isDesktop } = useResponsiveDialog();
 
-  return (
-    <div className={cn({ "px-4 pt-4": !isDesktop }, className)} {...props} />
-  );
+  return <div className={cn({ "p-6": !isDesktop }, className)} {...props} />;
 };
 
 const ResponsiveDialogHeader = ({ className, ...props }: BaseProps) => {

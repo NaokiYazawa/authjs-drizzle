@@ -71,11 +71,11 @@ export const UserProfileDropdown = ({ user }: UserProfileDropdownProps) => {
           <DropdownMenuGroup>
             <DropdownMenuItem onClick={() => setIsUserProfileDialogOpen(true)}>
               <Icons.User className={iconVariants({ className: "me-2" })} />
-              Profile
+              プロフィール
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Icons.Settings className={iconVariants({ className: "me-2" })} />
-              Settings
+              設定
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
@@ -85,13 +85,15 @@ export const UserProfileDropdown = ({ user }: UserProfileDropdownProps) => {
           >
             {isSignoutLoading ? (
               <>
-                <Icons.Loader2 className="me-2 animate-spin" />
-                Logging out...
+                <Icons.Loader2
+                  className={iconVariants({ className: "me-2 animate-spin" })}
+                />
+                ログアウト中
               </>
             ) : (
               <>
                 <Icons.LogOut className={iconVariants({ className: "me-2" })} />
-                Logout
+                ログアウト
               </>
             )}
           </DropdownMenuItem>

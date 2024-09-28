@@ -34,18 +34,16 @@ export const SigninDialog = ({ children }: { children: React.ReactNode }) => {
         <DialogHeader className="space-y-4">
           <DialogTitle>Sign In</DialogTitle>
           <DialogDescription>
-            Sign in for unlimited link lifespan and extra options.
+            新規登録、ログインのどちらも以下のリンクから行うことができます。
           </DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col gap-2 mt-4">
-          <OAuthProviderButton
-            provider="google"
-            providerName="Google"
-            isLoading={signinProvider === "google"}
-            handleSignin={handleSignin}
-            variant={theme === "dark" ? "default" : "secondary"}
-          />
-        </div>
+        <OAuthProviderButton
+          provider="google"
+          providerName="Google"
+          isLoading={signinProvider === "google"}
+          handleSignin={handleSignin}
+          variant={theme === "dark" ? "default" : "secondary"}
+        />
       </DialogContent>
     </Dialog>
   );

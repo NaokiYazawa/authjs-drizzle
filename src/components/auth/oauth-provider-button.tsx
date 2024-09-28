@@ -48,8 +48,8 @@ const OAuthProviderButton = React.forwardRef<
           <ProviderIcon className={iconVariants({ className: "mr-2" })} />
         )}
         {isLoading
-          ? `Redirecting to ${providerName}...`
-          : `Continue with ${providerName}`}
+          ? `${providerName} のログイン画面に移動中...`
+          : `${providerName} でログイン`}
       </Button>
     );
   }
