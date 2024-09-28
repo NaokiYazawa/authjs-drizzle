@@ -15,7 +15,9 @@ export const Header = () => {
       </Link>
       <div className="flex items-center gap-2">
         <ThemeToggle />
-        <Suspense fallback={<Icons.Loader2 className="me-2 animate-spin" />}>
+        <Suspense
+          fallback={<Icons.Loader2 className="h-10 w-10 animate-spin" />}
+        >
           <UserProfile />
         </Suspense>
       </div>
