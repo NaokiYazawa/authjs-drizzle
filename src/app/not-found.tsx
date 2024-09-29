@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const NotFound = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4 text-center">
+    <div className="flex h-dvh flex-col items-center justify-center p-4 text-center">
       <h1 className="mb-2 text-6xl font-bold">404</h1>
       <p className="mb-4 text-2xl font-semibold">ページが見つかりません。</p>
       <p className="mb-8 text-lg">

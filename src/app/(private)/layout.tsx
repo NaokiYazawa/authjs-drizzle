@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 export default function PrivateLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="h-screen">
+    <div className="h-dvh">
       <Header />
       {children}
     </div>

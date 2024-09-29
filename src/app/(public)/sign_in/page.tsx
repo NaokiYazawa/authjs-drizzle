@@ -15,7 +15,7 @@ export default function Page() {
   };
 
   return (
-    <main className="h-screen flex items-center justify-center px-4">
+    <main className="h-dvh flex items-center justify-center px-4">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px]">
         <div className="flex flex-col space-y-2">
           <h1 className="text-2xl font-semibold tracking-tight">Sign In</h1>
