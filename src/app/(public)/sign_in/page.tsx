@@ -3,19 +3,9 @@
 import React from "react";
 import { type BuiltInProviderType } from "next-auth/providers/index";
 import { signIn, type LiteralUnion } from "next-auth/react";
+import { OAuthProviderButton } from "@/components/auth/oauth-provider-button";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-
-import { OAuthProviderButton } from "./oauth-provider-button";
-
-export const SigninDialog = ({ children }: { children: React.ReactNode }) => {
+export default function Page() {
   const [signinProvider, setSigninProvider] =
     React.useState<LiteralUnion<BuiltInProviderType>>();
 
@@ -25,22 +15,21 @@ export const SigninDialog = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-[22rem] sm:max-w-sm">
-        <DialogHeader className="space-y-4">
-          <DialogTitle>Sign In</DialogTitle>
-          <DialogDescription>
+    <main className="h-full flex items-center justify-center px-4">
+      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px]">
+        <div className="flex flex-col space-y-2">
+          <h1 className="text-2xl font-semibold tracking-tight">Sign In</h1>
+          <p className="text-sm text-muted-foreground">
             新規登録、ログインのどちらも以下のリンクから行うことができます。
-          </DialogDescription>
-        </DialogHeader>
+          </p>
+        </div>
         <OAuthProviderButton
           provider="google"
           providerName="Google"
           isLoading={signinProvider === "google"}
           handleSignin={handleSignin}
         />
-      </DialogContent>
-    </Dialog>
+      </div>
+    </main>
   );
-};
+}

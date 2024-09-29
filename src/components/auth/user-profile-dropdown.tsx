@@ -14,17 +14,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Icons, iconVariants } from "@/components/icons";
-
-import { UserProfileDialog } from "./user-profile-dialog";
-import { User } from "@/db/schema";
+import { Session } from "next-auth";
 
 type UserProfileDropdownProps = {
-  user: User;
+  user: Session["user"];
 };
 
 export const UserProfileDropdown = ({ user }: UserProfileDropdownProps) => {
   const [isSignoutLoading, setIsSignoutLoading] = useState(false);
-  const [isUserProfileDialogOpen, setIsUserProfileDialogOpen] = useState(false);
 
   const nameInitials = user.name
     ?.match(/\b(\w)/g)
@@ -38,72 +35,62 @@ export const UserProfileDropdown = ({ user }: UserProfileDropdownProps) => {
   };
 
   return (
-    <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button className="rounded-full" size="icon" variant="ghost">
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button className="rounded-full" size="icon" variant="ghost">
+          <Avatar className="h-9 w-9">
+            <AvatarImage src={user.image ?? ""} alt="user profile image" />
+            <AvatarFallback>{nameInitials}</AvatarFallback>
+          </Avatar>
+          <span className="sr-only">Toggle user menu</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-52">
+        <div className="flex p-1">
+          <div className="relative">
             <Avatar className="h-9 w-9">
               <AvatarImage src={user.image ?? ""} alt="user profile image" />
               <AvatarFallback>{nameInitials}</AvatarFallback>
             </Avatar>
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="min-w-52">
-          <div className="flex p-1">
-            <div className="relative">
-              <Avatar className="h-9 w-9">
-                <AvatarImage src={user.image ?? ""} alt="user profile image" />
-                <AvatarFallback>{nameInitials}</AvatarFallback>
-              </Avatar>
-              <div className="absolute bottom-[-1px] end-[-1px] bg-background p-0.5 rounded-full">
-                <div className="bg-blue-500 rounded-full p-1"></div>
-              </div>
-            </div>
-            <div className="ms-2 max-w-40">
-              <div className="text-sm truncate font-medium">{user.name}</div>
-              <div className="text-xs truncate text-muted-foreground">
-                {user.email}
-              </div>
+            <div className="absolute bottom-[-1px] end-[-1px] bg-background p-0.5 rounded-full">
+              <div className="bg-blue-500 rounded-full p-1"></div>
             </div>
           </div>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem onClick={() => setIsUserProfileDialogOpen(true)}>
-              <Icons.User className={iconVariants({ className: "me-2" })} />
-              プロフィール
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Icons.Settings className={iconVariants({ className: "me-2" })} />
-              設定
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem
-            onSelect={handleSignOut}
-            disabled={isSignoutLoading}
-          >
-            {isSignoutLoading ? (
-              <>
-                <Icons.Loader2
-                  className={iconVariants({ className: "me-2 animate-spin" })}
-                />
-                ログアウト中
-              </>
-            ) : (
-              <>
-                <Icons.LogOut className={iconVariants({ className: "me-2" })} />
-                ログアウト
-              </>
-            )}
+          <div className="ms-2 max-w-40">
+            <div className="text-sm truncate font-medium">{user.name}</div>
+            <div className="text-xs truncate text-muted-foreground">
+              {user.email}
+            </div>
+          </div>
+        </div>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <Icons.User className={iconVariants({ className: "me-2" })} />
+            プロフィール
           </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <UserProfileDialog
-        user={user}
-        isOpen={isUserProfileDialogOpen}
-        onOpenChange={setIsUserProfileDialogOpen}
-      />
-    </>
+          <DropdownMenuItem>
+            <Icons.Settings className={iconVariants({ className: "me-2" })} />
+            設定
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onSelect={handleSignOut} disabled={isSignoutLoading}>
+          {isSignoutLoading ? (
+            <>
+              <Icons.Loader2
+                className={iconVariants({ className: "me-2 animate-spin" })}
+              />
+              ログアウト中
+            </>
+          ) : (
+            <>
+              <Icons.LogOut className={iconVariants({ className: "me-2" })} />
+              ログアウト
+            </>
+          )}
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
