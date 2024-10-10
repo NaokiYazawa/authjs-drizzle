@@ -26,7 +26,7 @@ export type User = typeof users.$inferSelect;
 export const accounts = pgTable(
   "accounts",
   {
-    userId: text("userId")
+    userId: text("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     type: text("type").$type<AdapterAccountType>().notNull(),
